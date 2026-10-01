@@ -37,10 +37,51 @@
 <div class="hero-copy">
 <p class="eyebrow">SMALL TOOLS, A LITTLE JOY.</p>
 <h1 id="hero-title">毎日に持ち歩く、<br><span>小さな道具を。</span></h1>
-<p class="lead">いつもの暮らしが、少し楽に、少し楽しく。<br>手のひらになじむアプリをつくっています。</p>
-<a class="button" href="#apps">つくっているアプリを見る</a>
+<p class="lead">ちょっと便利で、ちょっと楽しい。<br>暮らしになじむ小さなアプリをつくっています。</p>
+<a class="button" href="#apps">つくっているアプリを見る<span class="button-arrow" aria-hidden="true">→</span></a>
 </div>
-<div class="brand-art" aria-hidden="true"><div class="orbit orbit-back"></div><div class="orbit orbit-front"></div><i class="sprinkle s1"></i><i class="sprinkle s2"></i><i class="sprinkle s3"></i><i class="sprinkle s4"></i><i class="sprinkle s5"></i><i class="sprinkle s6"></i><span class="art-caption">a little more comfortable.</span></div>
+
+<div class="hero-stage" aria-hidden="true">
+<span class="stage-glow"></span>
+<span class="orbit-line ol1"></span>
+<span class="orbit-line ol2"></span>
+<span class="orbit-line ol3"></span>
+
+<div class="float mochi" style="--d:.3">
+<div class="mochi-spin">
+<span class="ring ring-back"></span>
+<span class="ring ring-front"></span>
+<span class="ring ring-gloss"></span>
+<i class="sprinkle s1"></i><i class="sprinkle s2"></i><i class="sprinkle s3"></i>
+<i class="sprinkle s4"></i><i class="sprinkle s5"></i><i class="sprinkle s6"></i>
+</div>
+</div>
+
+<div class="float chip chip-widget" style="--d:1.5;--bob:6px">
+<span class="float-in"><span class="mini-widget"><i></i><i></i><i></i><i></i></span></span>
+</div>
+
+<div class="float chip chip-transit" style="--d:1.15;--bob:4px">
+<span class="float-in">
+<span class="chip-route">新宿<em>→</em>渋谷</span>
+<span class="chip-eta">あと<strong>8</strong>分</span>
+</span>
+</div>
+
+<div class="float chip chip-round chip-workout" style="--d:1.95;--bob:5px">
+<span class="float-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 10v4M8 6.5v11M16 6.5v11M19.5 10v4M8 12h8"/></svg></span>
+</div>
+
+<div class="float chip chip-round chip-timer" style="--d:1.35;--bob:3px">
+<span class="float-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.6V12l3 1.9"/></svg></span>
+</div>
+
+<div class="float cap cap-a" style="--d:2.3;--bob:4px"><span class="float-in"></span></div>
+<div class="float cap cap-b" style="--d:1.75;--bob:3px"><span class="float-in"></span></div>
+<div class="float cap cap-c" style="--d:2.6;--bob:5px"><span class="float-in"></span></div>
+</div>
+
+<p class="scroll-cue"><span>SCROLL</span><i aria-hidden="true"></i></p>
 </section>
 <section class="section" id="apps" aria-labelledby="apps-title">
 <div class="section-heading"><div><p class="eyebrow">OUR APPS</p><h2 id="apps-title">暮らしのそばに。</h2></div><p>iPhone のための、小さな工夫。</p></div>
@@ -67,5 +108,57 @@
 <div class="footer-links"><a href="/business/">事業者情報</a><a href="/carddock/privacy.html">プライバシーポリシー</a><a href="/carddock/terms.html">利用規約</a></div>
 <p class="copyright">&copy; 2026 Mochido Studio</p>
 </div></footer>
+<script>
+(function () {
+  var hero = document.querySelector('.studio-hero');
+  var stage = document.querySelector('.hero-stage');
+  var cue = document.querySelector('.scroll-cue');
+  if (!hero || !stage) return;
+
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+  var set = function (k, v) { stage.style.setProperty(k, v); };
+
+  /* マウスの位置に合わせて数 px だけ動かす（量は要素ごとの --d 倍）。
+     なめらかさは CSS の transition に任せ、ここでは値を入れるだけにしてある。 */
+  function onMove(e) {
+    var r = hero.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    set('--mx', (((e.clientX - r.left) / r.width - .5) * 15).toFixed(1) + 'px');
+    set('--my', (((e.clientY - r.top) / r.height - .5) * 15).toFixed(1) + 'px');
+  }
+  function onLeave() { set('--mx', '0px'); set('--my', '0px'); }
+
+  /* スクロールし始めたら、浮かぶ要素だけ少し上がって薄くなる */
+  function onScroll() {
+    var p = Math.min(1, (window.pageYOffset || document.documentElement.scrollTop || 0) / 420);
+    set('--rise', (p * 26).toFixed(1) + 'px');
+    set('--vis', (1 - p * .85).toFixed(3));
+    if (cue) cue.style.setProperty('--cue', (1 - Math.min(1, p * 3)).toFixed(3));
+  }
+
+  function off() {
+    hero.removeEventListener('mousemove', onMove);
+    hero.removeEventListener('mouseleave', onLeave);
+    window.removeEventListener('scroll', onScroll);
+    ['--mx', '--my', '--rise', '--vis'].forEach(function (k) { stage.style.removeProperty(k); });
+    if (cue) cue.style.removeProperty('--cue');
+  }
+
+  function bind() {
+    off();
+    if (calm.matches) return;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    if (fine.matches) {
+      hero.addEventListener('mousemove', onMove, { passive: true });
+      hero.addEventListener('mouseleave', onLeave);
+    }
+  }
+  bind();
+  if (calm.addEventListener) calm.addEventListener('change', bind);
+  else if (calm.addListener) calm.addListener(bind);
+})();
+</script>
 </body>
 </html>
