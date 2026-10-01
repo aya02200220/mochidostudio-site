@@ -18,15 +18,16 @@ OUT = pathlib.Path(__file__).parent / "carddock"
 STYLE_FROM = '<link rel="stylesheet" href="legal-style.css">'
 STYLE_TO = '<link rel="stylesheet" href="/assets/site.css">'
 
-HEADER = """<header class="site-header"><div class="wrap">
+HEADER = """<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
 <a class="brand" href="/">Mochido Studio</a>
-<nav><a href="/carddock/">CardDock</a></nav>
+<nav aria-label="メインナビゲーション"><a href="/carddock/">CardDock</a><a href="/business/">事業者情報</a></nav>
 </div></header>
-<main><div class="wrap">"""
+<main id="main"><div class="wrap">"""
 
 FOOTER = """</div></main>
 <footer class="site-footer"><div class="wrap">
-<p><a href="/carddock/">&larr; CardDock について</a></p>
+<p><a href="/carddock/">CardDock について</a></p>
 <p>&copy; 2026 Mochido Studio</p>
 </div></footer>"""
 
@@ -35,6 +36,7 @@ def head_block(path, title, desc):
     url = f"{SITE}{path}"
     return f"""<meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
