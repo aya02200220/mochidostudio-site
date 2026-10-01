@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <title>Mochido Studio — iPhone 向けアプリの開発・販売</title>
 <meta name="description" content="Mochido Studio は iPhone 向けアプリケーションの開発および販売を行う個人事業です。">
+<script>document.documentElement.className += " js";</script>
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="canonical" href="https://mochidostudio.com/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -83,19 +84,67 @@
 
 <p class="scroll-cue"><span>SCROLL</span><i aria-hidden="true"></i></p>
 </section>
-<section class="section" id="apps" aria-labelledby="apps-title">
-<div class="section-heading"><div><p class="eyebrow">OUR APPS</p><h2 id="apps-title">暮らしのそばに。</h2></div><p>iPhone のための、小さな工夫。</p></div>
-<article class="app-feature">
-<div class="app-feature-copy">
-<div class="app-identity"><img src="/assets/carddock-icon.png" width="72" height="72" alt="" class="app-icon"><div><h3>CardDock</h3><span class="badge">リリース準備中</span></div></div>
-<h4>いつものアプリを、<br>わたしの並びに。</h4>
-<p>ポイントカードも、決済も、よく使うアプリも。<br class="desktop-break">お気に入りをウィジェットにまとめて、ワンタップ。<br class="desktop-break">並べ方も背景も、自分の使いやすいかたちに。</p>
-<ul class="tags" aria-label="主な機能"><li>ウィジェット</li><li>レイアウトのカスタマイズ</li><li>画像カード</li></ul>
-<a class="button button-secondary app-card-link" href="/carddock/">CardDock を詳しく見る</a>
+<section class="section apps-section" id="apps" aria-labelledby="apps-title">
+<span class="apps-ring" aria-hidden="true"></span>
+<i class="apps-sprinkle ap1" aria-hidden="true"></i><i class="apps-sprinkle ap2" aria-hidden="true"></i><i class="apps-sprinkle ap3" aria-hidden="true"></i>
+
+<div class="apps-head reveal" style="--i:0">
+<p class="eyebrow">OUR APPS</p>
+<h2 id="apps-title">暮らしのそばに。</h2>
+<p class="lead">毎日を少しだけ楽に、少しだけ楽しくする<br class="desktop-break">小さなアプリたちです。</p>
 </div>
-<figure class="app-visual"><img src="/assets/carddock-store-01.webp" width="900" height="1955" alt="CardDock の App Store 掲載予定画像。よく使うアプリをウィジェットから開けることを紹介しています。" loading="lazy"><figcaption>App Store 掲載予定画像 · 開発中</figcaption></figure>
+
+<div class="app-grid">
+
+<article class="app-card is-carddock reveal" style="--i:1">
+<div class="app-art" aria-hidden="true"><div class="art-in">
+<div class="mock mock-widget">
+<span class="mw-rail"><i></i><i></i><i></i><i></i></span>
+<span class="mw-apps"><i class="t1"></i><i class="t2"></i><i class="t3"></i><i class="t4"></i><i class="t5"></i><i class="t6"></i><i class="t7"></i><i class="t8"></i><i class="t9"></i><i class="t10"></i><i class="t11"></i><i class="t12"></i></span>
+</div>
+</div></div>
+<div class="app-meta">
+<h3><a class="app-hit" href="/carddock/">CardDock</a></h3>
+<p>好きなアプリを、<br>好きなレイアウトで。</p>
+<span class="app-status st-soon">近日公開</span>
+</div>
+<span class="app-peek" aria-hidden="true">View app <i>↗</i></span>
 </article>
-<p class="coming-note"><span aria-hidden="true">＋</span> 日々を少し心地よくする、ほかのアプリも制作中です。</p>
+
+<article class="app-card is-workout reveal" style="--i:2">
+<div class="app-art" aria-hidden="true"><div class="art-in">
+<div class="mock mock-watch">
+<span class="wk-ring"></span>
+<span class="wk-count"><strong>12</strong><em>reps</em></span>
+<span class="wk-sets">3 sets</span>
+<span class="wk-rest">REST 0:45</span>
+</div>
+</div></div>
+<div class="app-meta">
+<h3>Workout</h3>
+<p>Apple Watch とつながる<br>ワークアウト記録。</p>
+<span class="app-status st-dev">開発中</span>
+</div>
+</article>
+
+<article class="app-card is-snaptime reveal" style="--i:3">
+<div class="app-art" aria-hidden="true"><div class="art-in">
+<div class="mock mock-transit">
+<span class="sn-top"><i></i>SnapTime</span>
+<span class="sn-route">新宿<em>→</em>渋谷</span>
+<span class="sn-eta">あと<strong>8</strong>分</span>
+<span class="sn-bar"><i></i></span>
+<span class="sn-alarm">7:42 にアラーム</span>
+</div>
+</div></div>
+<div class="app-meta">
+<h3>SnapTime</h3>
+<p>乗り換え時間から<br>アラームを自動作成。</p>
+<span class="app-status st-dev">開発中</span>
+</div>
+</article>
+
+</div>
 </section>
 <section class="about-section section" id="about" aria-labelledby="about-title">
 <div><p class="eyebrow">ABOUT MOCHIDO</p><h2 id="about-title">「これがあったら」を、<br>毎日の道具に。</h2></div>
@@ -158,6 +207,25 @@
   bind();
   if (calm.addEventListener) calm.addEventListener('change', bind);
   else if (calm.addListener) calm.addListener(bind);
+})();
+
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+  var show = function (el) { el.classList.add('is-in'); };
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(show);
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      show(en.target);
+      io.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: .15 });
+  items.forEach(function (el) { io.observe(el); });
 })();
 </script>
 </body>
