@@ -212,6 +212,7 @@ tr:first-child th, tr:first-child td { padding-top: 0; }
 .app-status { font-size: .75rem; font-weight: 700; letter-spacing: .03em; border-radius: 99px; padding: 5px 13px; line-height: 1.6; }
 .st-soon { color: var(--accent); background: var(--pink-soft); }
 .st-dev { color: var(--sub); border: 1px solid var(--line); }
+.st-live { color: #fff; background: var(--accent); }
 
 .app-peek { position: absolute; top: 14px; right: 14px; z-index: 4; pointer-events: none;
   display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 99px;
