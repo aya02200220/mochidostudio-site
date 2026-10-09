@@ -189,7 +189,7 @@ tr:first-child th, tr:first-child td { padding-top: 0; }
   background: var(--app-bg); border: 1px solid var(--app-line); border-radius: 26px; box-shadow: var(--app-shadow);
   transition: transform .24s cubic-bezier(.22,.7,.2,1), box-shadow .24s, border-color .24s; }
 .app-card:hover { transform: translateY(-3px); border-color: var(--app-line-hi); box-shadow: var(--app-shadow-hi); }
-.app-card:focus-within { outline: 3px solid var(--accent); outline-offset: 4px; }
+.app-card:focus-within { outline: 3px solid var(--accent); outline-offset: -3px; }   /* 内側に描く（外側だと .apps-section の overflow: hidden で左端が切れた。2026-10-09） */
 
 .app-art { position: relative; aspect-ratio: 4 / 3.4; overflow: hidden; }
 .art-in { position: absolute; inset: 0; display: grid; place-items: center;
@@ -305,13 +305,53 @@ tr:first-child th, tr:first-child td { padding-top: 0; }
 .feature-card h3 { font-size: 1.25rem; margin-top: 0; }
 .feature-card ul { margin-bottom: 0; }
 .feature-card li { margin-bottom: 14px; font-size: .9375rem; }
+/* CardDock の Free / Pro の比較表（アプリの Pro 画面と同じ形。2026-10-08） */
+.compare-card { margin-top: 30px; padding: 18px 26px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 24px; }
+.compare { border-collapse: separate; border-spacing: 6px 0; font-size: .9375rem; line-height: 1.55; }
+.compare th, .compare td { width: auto; padding: 12px 0; border-bottom: 0; vertical-align: middle; font-weight: 500; }
+.compare tbody th { padding-right: 12px; border-top: 1px solid var(--line); }
+.compare tbody tr:first-child th { border-top: 0; }
+.compare tr:first-child th, .compare tr:first-child td { padding-top: 12px; }
+.compare thead th { width: 92px; padding: 12px 0 8px; text-align: center; font-size: .875rem; font-weight: 700; color: var(--sub); }
+.compare thead th.col-pro { color: var(--accent); }
+.compare .crown { color: #e3a925; margin-right: 4px; font-size: .8125rem; }
+.compare td:not(:first-child), .compare tbody td { text-align: center; }
+.compare tbody td { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.compare tbody td.col-pro, .compare thead th.col-pro { background: color-mix(in srgb, var(--accent) 11%, transparent); }
+.compare thead th { background: color-mix(in srgb, var(--ink) 4%, transparent); border-radius: 14px 14px 0 0; }
+.compare thead td { background: none; }
+.compare tbody tr:last-child td { border-radius: 0 0 14px 14px; }
+.compare .ck { width: 22px; height: 22px; vertical-align: middle; }
+.compare .ck circle { fill: var(--accent); }
+.compare .ck path { fill: none; stroke: var(--card); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.compare .no { display: inline-block; width: 12px; height: 2px; border-radius: 1px; background: var(--sub); opacity: .55; vertical-align: middle; }
+.compare .tx { font-size: .8125rem; color: var(--sub); white-space: nowrap; }
+.compare .tx-pro { font-size: .875rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.compare-card .note { margin: 10px 0 0; }
+.compare .sp { display: none; }
+@media (max-width: 640px) {
+  /* スマホは 1 行に収めて、表全体を低く（2026-10-08、ユーザー指示「一画面に収まらないのは嫌」） */
+  .compare .pc { display: none; }
+  .compare .sp { display: inline; }
+  .compare-card { margin-top: 22px; padding: 4px 10px 10px; border-radius: 18px; }
+  .compare { font-size: .75rem; line-height: 1.35; border-spacing: 3px 0; }
+  .compare th, .compare td, .compare tr:first-child th, .compare tr:first-child td { padding: 7px 0; }
+  .compare tbody th { padding-right: 6px; font-weight: 500; }
+  .compare thead th { width: 56px; padding: 8px 0 4px; font-size: .75rem; border-radius: 10px 10px 0 0; }
+  .compare tbody tr:last-child td { border-radius: 0 0 10px 10px; }
+  .compare .ck { width: 17px; height: 17px; }
+  .compare .no { width: 9px; }
+  .compare .tx { font-size: .6875rem; letter-spacing: -.02em; }
+  .compare .tx-pro { font-size: .75rem; }
+  .compare-card .note { font-size: .75rem; margin-top: 6px; }
+}
 .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
 .price-card { padding: 26px 22px; border: 1px solid var(--line); border-radius: 24px; background: var(--card); }
 .price-card.featured { background: var(--pink-soft); border-color: var(--pink); }
 .price-card h3 { font-size: .9375rem; margin: 0 0 18px; }
 .price-card .price { font-size: 2rem; letter-spacing: -.04em; font-weight: 750; margin: 0; line-height: 1.4; }
 .price small { font-size: .875rem; letter-spacing: 0; font-weight: 500; }
-.price-card > p:last-child { font-size: .875rem; color: var(--sub); margin: 14px 0 0; }
+.price-card > p:last-child { font-size: .875rem; color: var(--sub); margin: 10px 0 0; line-height: 1.5; }
 .section-intro { color: var(--sub); margin: 14px 0 0; }
 .detail-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; }
 .detail-layout h2 { font-size: 1.5rem; }
@@ -395,7 +435,8 @@ tr:first-child th, tr:first-child td { padding-top: 0; }
   .price-grid { gap: 12px; }
   .price-card { padding: 21px 16px; border-radius: 18px; }
   .price-card .price { font-size: 1.6rem; }
-  .price-card h3 { font-size: .875rem; }
+  .price-card h3 { font-size: .875rem; margin-bottom: 12px; }
+  .price-card > p:last-child { font-size: .8125rem; }
   .steps li { gap: 14px; }
   main { padding-block: 32px 48px; }
   h1 { font-size: 1.6rem; }
@@ -417,4 +458,76 @@ tr:first-child th, tr:first-child td { padding-top: 0; }
   :root { --ink: #000; --sub: #333; --bg: #fff; --card: #fff; --line: #ccc; --accent: #000; }
   .hero-stage, .scroll-cue, .skip-link, .site-header nav { display: none; }
   .section { break-inside: avoid; }
+}
+
+/* ---------- CardDock のページ（テーマ・できること。2026-10-09 に作り直し） ---------- */
+.pro-tag { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 99px; background: var(--pink-soft); color: var(--accent);
+  font-size: .6875rem; font-weight: 700; letter-spacing: .02em; vertical-align: .15em; line-height: 1.6; }
+.theme-head { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: end; margin-bottom: 28px; }
+.theme-head p:not(.eyebrow) { color: var(--sub); margin: 0; font-size: .9375rem; }
+.theme-kv { margin: 0 0 22px; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); }
+.theme-kv img { width: 100%; }
+.marquee { overflow: hidden; margin-top: 14px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 70s linear infinite; }
+.marquee.is-reverse .marquee-track { animation-direction: reverse; animation-duration: 80s; }
+.marquee-track img { height: 104px; width: auto; margin-right: 18px; flex: none; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.gallery-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 26px; }
+.gallery-nav { display: flex; gap: 10px; }
+.gallery-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px; }
+.gallery-btn:hover { border-color: var(--app-line-hi); }
+/* 1 枚 = 画像 + 横に説明。横にスクロールしてほかも見る（2026-10-09、ユーザー指示「1 画面に最低 2 つ、隣をのぞかせる、下はドット」） */
+.gallery { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; list-style: none; margin: 0; padding: 4px 2px 6px;
+  scrollbar-width: none; cursor: grab; overscroll-behavior-x: contain; scroll-padding-left: 2px; }
+.gallery::-webkit-scrollbar { display: none; }
+.gallery.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.gallery.is-animating { scroll-snap-type: none; }
+.gallery-card { flex: 0 0 calc((100% - 20px - 72px) / 2); margin: 0; scroll-snap-align: start; display: grid; grid-template-columns: 46% 1fr; gap: 20px; align-items: center;
+  padding: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 24px; }
+.gallery-card img { grid-row: span 2; width: 100%; border-radius: 16px; box-shadow: var(--app-shadow);
+  -webkit-user-select: none; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; pointer-events: none; }
+.gallery-card h3 { align-self: end; font-size: 1rem; letter-spacing: -.03em; margin: 0; line-height: 1.5; }
+.gallery-card p { align-self: start; color: var(--sub); font-size: .8125rem; line-height: 1.8; margin: 10px 0 0; }
+.gallery-dots { display: flex; justify-content: center; gap: 4px; margin-top: 14px; }
+.gallery-dot { width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.gallery-dot::before { content: ""; width: 8px; height: 8px; border-radius: 99px; background: var(--sub); opacity: .35; transition: width .25s, opacity .25s, background .25s; }
+.gallery-dot[aria-selected="true"]::before { width: 22px; opacity: 1; background: var(--accent); }
+
+.more-title { font-size: 1rem; margin: 40px 0 14px; }
+.more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.more-grid li { margin: 0; padding: 16px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+.more-grid h3 { font-size: .875rem; margin: 0 0 4px; }
+.more-grid p { color: var(--sub); font-size: .8125rem; line-height: 1.65; margin: 0; }
+
+.usage-notes { list-style: none; margin: 18px 0 0; padding: 0; color: var(--sub); font-size: .8125rem; line-height: 1.75; }
+.usage-notes li { position: relative; padding-left: 14px; margin: 0 0 4px; }
+.usage-notes li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: var(--sub); opacity: .6; }
+
+@media (max-width: 900px) {
+  .gallery-card { flex-basis: 78%; }
+  .theme-head { grid-template-columns: 1fr; gap: 14px; }
+  .more-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .theme-kv { border-radius: 18px; margin-bottom: 14px; }
+  .theme-kv img { height: 220px; object-fit: cover; }
+  .marquee-track img { height: 76px; margin-right: 12px; }
+  .marquee { margin-top: 10px; }
+  .gallery-nav { display: none; }
+  .gallery { gap: 12px; margin-inline: -22px; padding-inline: 22px; scroll-padding-left: 22px; }
+  .gallery-card { flex-basis: 84%; grid-template-columns: 46% 1fr; gap: 12px; padding: 12px; border-radius: 20px; }
+  .gallery-card img { border-radius: 12px; }
+  .gallery-card h3 { font-size: .875rem; }
+  .gallery-card p { font-size: .6875rem; line-height: 1.65; margin-top: 6px; }
+  .more-title { margin-top: 30px; }
+  .more-grid { gap: 8px; }
+  .more-grid li { padding: 12px 14px; border-radius: 14px; }
+  .more-grid p { font-size: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .marquee { overflow-x: auto; }
 }
