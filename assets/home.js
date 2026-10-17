@@ -397,11 +397,11 @@ function start() {
     const aspect = width / height;
     const wide = aspect > 1.05;
     const near = wide ? 1 : 1 + (1.05 - aspect) * 1.75;
-    const dist = lerp(near, wide ? 1 : 1 + (1.05 - aspect) * 0.75, smooth(range(t5, 0.2, 1)));
+    const dist = lerp(near, wide ? 1 : 1 + (1.05 - aspect) * 1.9, smooth(range(t5, 0.2, 1)));
     camPos.set(lerp(a.pos[0], b.pos[0], f), lerp(a.pos[1], b.pos[1], f), lerp(a.pos[2], b.pos[2], f)).multiplyScalar(dist);
     const d = camPos.length();
     const visH = 2 * tanHalf * d, visW = visH * aspect;
-    target.set(wide ? -Math.min(0.22, 0.1 + (aspect - 1) * 0.15) * visW : 0, wide ? 0 : lerp(-0.08, -0.1, smooth(range(t5, 0.3, 1))) * visH, 0);
+    target.set(wide ? -Math.min(0.22, 0.1 + (aspect - 1) * 0.15) * visW : 0, wide ? 0 : lerp(-0.08, -0.09, smooth(range(t5, 0.3, 1))) * visH, 0);
     camera.position.copy(camPos).add(target);
     camera.lookAt(target);
     stage.style.setProperty('--gx', wide ? `${50 + Math.min(22, 10 + (aspect - 1) * 15)}%` : '50%');
