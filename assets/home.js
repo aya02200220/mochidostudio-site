@@ -136,6 +136,18 @@ function start() {
       p.setXYZ(i, v.x, v.y, v.z);
     }
     doughGeo.computeVertexNormals();
+    // 継ぎ目（輪の始まりと終わり・管の始まりと終わり）の法線をそろえて、線が見えないようにする
+    const RS = 72, TS = 180, at = (j, i) => j * (TS + 1) + i, a = new THREE.Vector3(), b = new THREE.Vector3();
+    const join = (x, y) => {
+      a.fromBufferAttribute(p, x); b.fromBufferAttribute(p, y); a.add(b).multiplyScalar(0.5);
+      p.setXYZ(x, a.x, a.y, a.z); p.setXYZ(y, a.x, a.y, a.z);
+      a.fromBufferAttribute(nor, x); b.fromBufferAttribute(nor, y); a.add(b).normalize();
+      nor.setXYZ(x, a.x, a.y, a.z); nor.setXYZ(y, a.x, a.y, a.z);
+    };
+    for (let j = 0; j <= RS; j++) join(at(j, 0), at(j, TS));
+    for (let i = 0; i <= TS; i++) join(at(0, i), at(RS, i));
+    nor.needsUpdate = true;
+    p.needsUpdate = true;
   }
   const clay = new THREE.Color(0xb9aeb5), baked = new THREE.Color(0xd8975a);
   const doughMat = new THREE.MeshPhysicalMaterial({ color: clay.clone(), roughness: 0.78, sheen: 1, sheenColor: new THREE.Color(0xffd6a8), sheenRoughness: 0.55, transparent: true, opacity: 0, envMapIntensity: 0.4 });
@@ -389,7 +401,7 @@ function start() {
     camPos.set(lerp(a.pos[0], b.pos[0], f), lerp(a.pos[1], b.pos[1], f), lerp(a.pos[2], b.pos[2], f)).multiplyScalar(dist);
     const d = camPos.length();
     const visH = 2 * tanHalf * d, visW = visH * aspect;
-    target.set(wide ? -Math.min(0.22, 0.1 + (aspect - 1) * 0.15) * visW : 0, wide ? 0 : lerp(-0.17, -0.1, smooth(range(t5, 0.3, 1))) * visH, 0);
+    target.set(wide ? -Math.min(0.22, 0.1 + (aspect - 1) * 0.15) * visW : 0, wide ? 0 : lerp(-0.08, -0.1, smooth(range(t5, 0.3, 1))) * visH, 0);
     camera.position.copy(camPos).add(target);
     camera.lookAt(target);
     stage.style.setProperty('--gx', wide ? `${50 + Math.min(22, 10 + (aspect - 1) * 15)}%` : '50%');
