@@ -2,229 +2,207 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>Mochido Studio — iPhone 向けアプリの開発・販売</title>
-<meta name="description" content="Mochido Studio は iPhone 向けアプリケーションの開発および販売を行う個人事業です。">
-<script>document.documentElement.className += " js";</script>
-<link rel="stylesheet" href="/assets/site.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mochido Studio — iPhone の小さな道具をつくるスタジオ</title>
+<meta name="description" content="Mochido Studio は、毎日をちょっと便利にする iPhone アプリをつくる個人スタジオです。">
+<meta name="theme-color" content="#110d12">
 <link rel="canonical" href="https://mochidostudio.com/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#1c1b26">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mochido Studio">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://mochidostudio.com/">
 <meta property="og:title" content="Mochido Studio">
-<meta property="og:description" content="Mochido Studio は iPhone 向けアプリケーションの開発および販売を行う個人事業です。">
+<meta property="og:description" content="Mochido Studio は、毎日をちょっと便利にする iPhone アプリをつくる個人スタジオです。">
 <meta property="og:image" content="https://mochidostudio.com/assets/og-mochido.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mochido Studio — iPhone 向けアプリケーションの開発および販売">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="/assets/home.css">
+<script type="importmap">{ "imports": { "three": "/assets/vendor/three.module.min.js" } }</script>
 </head>
-<body class="studio-page">
+<body class="home">
 <a class="skip-link" href="#main">本文へスキップ</a>
-<header class="site-header"><div class="wrap">
-<a class="brand" href="/">Mochido Studio</a>
-<nav aria-label="メインナビゲーション"><a href="#apps">アプリ</a><a href="#about">スタジオについて</a><a href="/business/">事業者情報</a></nav>
-</div></header>
 
-<main id="main"><div class="wrap">
-<section class="studio-hero" aria-labelledby="hero-title">
-<div class="hero-copy">
-<p class="eyebrow">SMALL TOOLS, A LITTLE JOY.</p>
-<h1 id="hero-title">毎日に持ち歩く、<br><span>小さな道具を。</span></h1>
-<p class="lead">ちょっと便利で、ちょっと楽しい。<br>暮らしになじむ小さなアプリをつくっています。</p>
-<a class="button" href="#apps">つくっているアプリを見る<span class="button-arrow" aria-hidden="true">→</span></a>
-</div>
+<header class="site-header" id="top">
+  <a class="brand" href="/"><i aria-hidden="true"></i>Mochido Studio</a>
+  <nav aria-label="メインナビゲーション">
+    <a href="#bench">Tools</a>
+    <a href="#studio">Studio</a>
+    <a href="#hello">Contact</a>
+  </nav>
+</header>
 
-<div class="hero-stage" aria-hidden="true">
-<span class="stage-glow"></span>
-<span class="orbit-line ol1"></span>
-<span class="orbit-line ol2"></span>
-<span class="orbit-line ol3"></span>
+<main id="main">
 
-<div class="float mochi" style="--d:.3">
-<div class="mochi-spin">
-<span class="ring ring-back"></span>
-<span class="ring ring-front"></span>
-<span class="ring ring-gloss"></span>
-<i class="sprinkle s1"></i><i class="sprinkle s2"></i><i class="sprinkle s3"></i>
-<i class="sprinkle s4"></i><i class="sprinkle s5"></i><i class="sprinkle s6"></i>
-</div>
-</div>
+<!-- スクロールでドーナツが出来上がっていく工房 -->
+<section class="lab" aria-label="Mochido Studio の工房">
+  <div class="lab-stage">
+    <div class="lab-glow" aria-hidden="true"></div>
+    <canvas class="lab-canvas" aria-hidden="true"></canvas>
+    <div class="lab-fallback" aria-hidden="true"><span></span></div>
 
-<div class="float chip chip-widget" style="--d:1.5;--bob:6px">
-<span class="float-in"><span class="mini-widget"><i></i><i></i><i></i><i></i></span></span>
-</div>
+    <div class="hud hud-steps" aria-hidden="true">
+      <p class="hud-file"><i></i>new_tool.app</p>
+      <ol>
+        <li><b>01</b><span>Idea</span><em></em></li>
+        <li><b>02</b><span>Design</span><em></em></li>
+        <li><b>03</b><span>Build</span><em></em></li>
+        <li><b>04</b><span>Polish</span><em></em></li>
+        <li><b>05</b><span>Ship</span><em></em></li>
+      </ol>
+    </div>
 
-<div class="float chip chip-transit" style="--d:1.15;--bob:4px">
-<span class="float-in">
-<span class="chip-route">新宿<em>→</em>渋谷</span>
-<span class="chip-eta">あと<strong>8</strong>分</span>
-</span>
-</div>
+    <div class="hud hud-stats" aria-hidden="true">
+      <p class="hud-title">Stats</p>
+      <dl>
+        <div><dt>Polygons</dt><dd data-stat="poly">0</dd></div>
+        <div><dt>Sprinkles</dt><dd data-stat="spr">0</dd></div>
+        <div><dt>Lights</dt><dd data-stat="lights">1</dd></div>
+        <div><dt>Build</dt><dd data-stat="build">0%</dd></div>
+      </dl>
+    </div>
+    <p class="lab-cue" aria-hidden="true"><i></i>Scroll</p>
 
-<div class="float chip chip-round chip-workout" style="--d:1.95;--bob:5px">
-<span class="float-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 10v4M8 6.5v11M16 6.5v11M19.5 10v4M8 12h8"/></svg></span>
-</div>
-
-<div class="float chip chip-round chip-timer" style="--d:1.35;--bob:3px">
-<span class="float-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.6V12l3 1.9"/></svg></span>
-</div>
-
-<div class="float cap cap-a" style="--d:2.3;--bob:4px"><span class="float-in"></span></div>
-<div class="float cap cap-b" style="--d:1.75;--bob:3px"><span class="float-in"></span></div>
-<div class="float cap cap-c" style="--d:2.6;--bob:5px"><span class="float-in"></span></div>
-</div>
-
-<p class="scroll-cue"><span>SCROLL</span><i aria-hidden="true"></i></p>
+    <div class="captions">
+      <div class="cap cap-first is-on">
+        <h1><span class="nb">iPhone の</span><span class="nb">小さな道具を、</span><span class="nb">ひとつずつ。</span></h1>
+        <p><strong>Mochido Studio</strong> は、毎日をちょっと便利にするアプリをつくるスタジオです。スクロールして、工房をのぞいてみてください。</p>
+      </div>
+      <p class="cap">ぜんぶ、<br>小さな思いつきから。</p>
+      <p class="cap">かたちにして、</p>
+      <p class="cap">色をのせて、</p>
+      <p class="cap">さわって、<br>磨いて、</p>
+      <div class="cap cap-last">
+        <p>iPhone の、<br>毎日の道具に。</p>
+        <div class="cap-actions">
+          <a class="btn btn-primary" href="#bench">つくっているもの</a>
+          <a class="btn btn-ghost" href="#studio">スタジオについて</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section apps-section" id="apps" aria-labelledby="apps-title">
-<span class="apps-ring" aria-hidden="true"></span>
-<i class="apps-sprinkle ap1" aria-hidden="true"></i><i class="apps-sprinkle ap2" aria-hidden="true"></i><i class="apps-sprinkle ap3" aria-hidden="true"></i>
 
-<div class="apps-head reveal" style="--i:0">
-<p class="eyebrow">OUR APPS</p>
-<h2 id="apps-title">暮らしのそばに。</h2>
-<p class="lead">毎日を少しだけ楽に、少しだけ楽しくする<br class="desktop-break">小さなアプリたちです。</p>
-</div>
-
-<div class="app-grid">
-
-<article class="app-card is-carddock reveal" style="--i:1">
-<div class="app-art" aria-hidden="true"><div class="art-in">
-<img class="art-shot" src="/assets/carddock-widget.webp" width="720" height="756" alt="" loading="lazy" decoding="async">
-</div></div>
-<div class="app-meta">
-<h3 class="app-id"><img src="/assets/icons/carddock.png" width="40" height="40" alt="" class="app-mark" loading="lazy"><a class="app-hit" href="/carddock/">CardDock</a></h3>
-<p>好きなアプリを、<br>好きなレイアウトで。</p>
-<span class="app-status st-live">配信中</span>
-</div>
-<span class="app-peek" aria-hidden="true">View app <i>↗</i></span>
-</article>
-
-<article class="app-card is-liftia reveal" style="--i:2">
-<div class="app-art" aria-hidden="true"><div class="art-in">
-<div class="mock mock-log">
-<span class="lg-head"><b>胸・三頭</b><em>今日</em></span>
-<span class="lg-row"><i>ベンチプレス</i><b>60<small>kg</small> × 10</b></span>
-<span class="lg-row"><i>　</i><b>60<small>kg</small> × 8</b></span>
-<span class="lg-row is-now"><i>　</i><b>55<small>kg</small> × 8</b></span>
-<span class="lg-foot"><em>総挙上</em><b>2,340<small>kg</small></b></span>
-</div>
-</div></div>
-<div class="app-meta">
-<h3 class="app-id"><img src="/assets/icons/liftia.png" width="40" height="40" alt="" class="app-mark" loading="lazy">Liftia</h3>
-<p>ジムでの記録を、<br>その場でかんたんに。</p>
-<span class="app-status st-dev">開発中</span>
-</div>
-</article>
-
-<article class="app-card is-timesnap reveal" style="--i:3">
-<div class="app-art" aria-hidden="true"><div class="art-in">
-<div class="mock mock-transit">
-<span class="sn-top"><i></i>TimeSnap</span>
-<span class="sn-route">新宿<em>→</em>渋谷</span>
-<span class="sn-eta">あと<strong>8</strong>分</span>
-<span class="sn-bar"><i></i></span>
-<span class="sn-foot"><em>7:42 発</em><em>7:50 着</em></span>
-<span class="sn-alarm">7:38 にアラーム</span>
-</div>
-</div></div>
-<div class="app-meta">
-<h3 class="app-id"><img src="/assets/icons/timesnap.png" width="40" height="40" alt="" class="app-mark" loading="lazy">TimeSnap</h3>
-<p>乗り換え時間から<br>アラームを自動作成。</p>
-<span class="app-status st-dev">開発中</span>
-</div>
-</article>
-
-</div>
+<section class="statement" id="studio" aria-labelledby="statement-title">
+  <div class="wrap statement-grid">
+    <h2 class="display" id="statement-title">Small tools,<br><em>a little joy.</em></h2>
+    <div class="statement-copy">
+      <p class="lede">Mochido Studio は、iPhone のための小さなアプリをつくる個人スタジオです。</p>
+      <p>「もう少し簡単にできたら」「こんなふうに使えたら」。暮らしの中の小さな気づきを、ひとつずつ、ポケットに入る道具にしています。</p>
+      <p>大きなものは作りません。そのかわり、毎日さわるところまで、ていねいに。</p>
+    </div>
+  </div>
 </section>
-<section class="about-section section" id="about" aria-labelledby="about-title">
-<div><p class="eyebrow">ABOUT MOCHIDO</p><h2 id="about-title">「これがあったら」を、<br>毎日の道具に。</h2></div>
-<div class="about-copy"><p>アプリをつくるきっかけは、いつも自分の暮らしの中にあります。「もう少し簡単にできたら」「こんなふうに使えたら」。そんな小さな気づきを、ひとつずつかたちにしています。</p><p>ポケットに入れて持ち歩く、気のきいた道具のように。<br>Mochido Studio は、毎日を少し快適にする iPhone アプリをつくっています。</p></div>
-</section>
-</div></main>
 
-<footer class="site-footer"><div class="wrap">
-<a class="brand" href="/">Mochido Studio</a>
-<div class="footer-links"><a href="/business/">事業者情報</a><a href="/privacy.html">プライバシーポリシー</a></div>
-<p class="copyright">&copy; 2026 Mochido Studio</p>
-</div></footer>
+<section class="bench" id="bench" aria-labelledby="bench-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">On the bench</p>
+      <h2 id="bench-title">いま、工房にある道具。</h2>
+    </div>
+
+    <ol class="tools">
+      <li>
+        <a class="tool" href="/carddock/">
+          <span class="tool-no">01</span>
+          <img class="tool-icon" src="/assets/icons/carddock.png" width="56" height="56" alt="">
+          <span class="tool-body"><span class="tool-name">CardDock</span><span class="tool-line">好きなアプリを、好きなレイアウトで。</span></span>
+          <span class="tool-status is-live">配信中</span>
+          <span class="tool-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <div class="tool">
+          <span class="tool-no">02</span>
+          <img class="tool-icon" src="/assets/icons/liftia.png" width="56" height="56" alt="">
+          <span class="tool-body"><span class="tool-name">Liftia</span><span class="tool-line">ジムでの記録を、その場でかんたんに。</span></span>
+          <span class="tool-status">開発中</span>
+          <span class="tool-arrow" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li>
+        <div class="tool">
+          <span class="tool-no">03</span>
+          <img class="tool-icon" src="/assets/icons/timesnap.png" width="56" height="56" alt="">
+          <span class="tool-body"><span class="tool-name">TimeSnap</span><span class="tool-line">乗り換え時間から、アラームを自動で。</span></span>
+          <span class="tool-status">開発中</span>
+          <span class="tool-arrow" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li>
+        <div class="tool is-next">
+          <span class="tool-no">04</span>
+          <span class="tool-icon tool-icon-next" aria-hidden="true"></span>
+          <span class="tool-body"><span class="tool-name">Next</span><span class="tool-line">次の思いつきを、こねています。</span></span>
+          <span class="tool-status is-idea">構想中</span>
+          <span class="tool-arrow" aria-hidden="true"></span>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="process" aria-labelledby="process-title">
+  <div class="wrap">
+    <div class="process-head">
+      <h2 class="display display-sm" id="process-title">Every tool starts<br>with a small <em>“what if.”</em></h2>
+      <p>ひとりの工房なので、気づくところから届けるところまで、ぜんぶ自分の手で。</p>
+    </div>
+    <ol class="steps">
+      <li><b>01</b><h3>気づく</h3><p>暮らしの中の「ちょっと不便」を、見逃さずにメモします。</p></li>
+      <li><b>02</b><h3>こねる</h3><p>すぐ触れる形にして、何度もさわって、たのしいところを探します。</p></li>
+      <li><b>03</b><h3>磨く</h3><p>指ざわり、読みやすさ、速さ。手になじむまで整えます。</p></li>
+      <li><b>04</b><h3>届ける</h3><p>App Store に出したあとも、使う人の声でまた育てます。</p></li>
+    </ol>
+    <p class="built">Made with <span>Swift</span><span>SwiftUI</span><span>WidgetKit</span></p>
+  </div>
+</section>
+
+<section class="hello" id="hello" aria-labelledby="hello-title">
+  <div class="wrap hello-grid">
+    <h2 class="display" id="hello-title">Say hello.</h2>
+    <div class="hello-copy">
+      <p>ご感想、ご要望、お仕事のご相談など。<br>ぜんぶ読んでいます。</p>
+      <div class="mail">
+        <a href="mailto:support@mochidostudio.com">support@mochidostudio.com</a>
+        <button type="button" class="copy" data-copy="support@mochidostudio.com">Copy</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="brand" href="/"><i aria-hidden="true"></i>Mochido Studio</a>
+    <div class="footer-links"><a href="/business/">事業者情報</a><a href="/privacy.html">プライバシーポリシー</a></div>
+    <p>&copy; 2026 Mochido Studio</p>
+  </div>
+</footer>
+
+<script type="module" src="/assets/home.js"></script>
 <script>
+document.querySelectorAll('[data-copy]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var t = b.getAttribute('data-copy');
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () {
+      b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600);
+    }, function () {});
+  });
+});
 (function () {
-  var hero = document.querySelector('.studio-hero');
-  var stage = document.querySelector('.hero-stage');
-  var cue = document.querySelector('.scroll-cue');
-  if (!hero || !stage) return;
-
-  var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-  var set = function (k, v) { stage.style.setProperty(k, v); };
-
-  /* マウスの位置に合わせて数 px だけ動かす（量は要素ごとの --d 倍）。
-     なめらかさは CSS の transition に任せ、ここでは値を入れるだけにしてある。 */
-  function onMove(e) {
-    var r = hero.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    set('--mx', (((e.clientX - r.left) / r.width - .5) * 15).toFixed(1) + 'px');
-    set('--my', (((e.clientY - r.top) / r.height - .5) * 15).toFixed(1) + 'px');
-  }
-  function onLeave() { set('--mx', '0px'); set('--my', '0px'); }
-
-  /* スクロールし始めたら、浮かぶ要素だけ少し上がって薄くなる */
-  function onScroll() {
-    var p = Math.min(1, (window.pageYOffset || document.documentElement.scrollTop || 0) / 420);
-    set('--rise', (p * 26).toFixed(1) + 'px');
-    set('--vis', (1 - p * .85).toFixed(3));
-    if (cue) cue.style.setProperty('--cue', (1 - Math.min(1, p * 3)).toFixed(3));
-  }
-
-  function off() {
-    hero.removeEventListener('mousemove', onMove);
-    hero.removeEventListener('mouseleave', onLeave);
-    window.removeEventListener('scroll', onScroll);
-    ['--mx', '--my', '--rise', '--vis'].forEach(function (k) { stage.style.removeProperty(k); });
-    if (cue) cue.style.removeProperty('--cue');
-  }
-
-  function bind() {
-    off();
-    if (calm.matches) return;
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    if (fine.matches) {
-      hero.addEventListener('mousemove', onMove, { passive: true });
-      hero.addEventListener('mouseleave', onLeave);
-    }
-  }
-  bind();
-  if (calm.addEventListener) calm.addEventListener('change', bind);
-  else if (calm.addListener) calm.addListener(bind);
-})();
-
-(function () {
-  var items = document.querySelectorAll('.reveal');
-  if (!items.length) return;
-  var show = function (el) { el.classList.add('is-in'); };
-  if (!('IntersectionObserver' in window) ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    items.forEach(show);
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
-      show(en.target);
-      io.unobserve(en.target);
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: .15 });
-  items.forEach(function (el) { io.observe(el); });
+  var h = document.querySelector('.site-header');
+  var on = function () { h.classList.toggle('is-scrolled', window.scrollY > 24); };
+  window.addEventListener('scroll', on, { passive: true }); on();
 })();
 </script>
 </body>
