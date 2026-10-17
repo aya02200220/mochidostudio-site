@@ -105,48 +105,55 @@
 <section class="bench" id="bench" aria-labelledby="bench-title">
   <div class="wrap">
     <div class="section-head">
-      <p class="kicker">On the bench</p>
-      <h2 id="bench-title">いま、工房にある道具。</h2>
+      <p class="kicker">Our apps</p>
+      <h2 id="bench-title">できたての、アプリたち。</h2>
     </div>
-
-    <ol class="tools">
-      <li>
-        <a class="tool" href="/carddock/">
-          <span class="tool-no">01</span>
-          <img class="tool-icon" src="/assets/icons/carddock.png" width="56" height="56" alt="">
-          <span class="tool-body"><span class="tool-name">CardDock</span><span class="tool-line">好きなアプリを、好きなレイアウトで。</span></span>
-          <span class="tool-status is-live">配信中</span>
-          <span class="tool-arrow" aria-hidden="true">↗</span>
-        </a>
-      </li>
-      <li>
-        <div class="tool">
-          <span class="tool-no">02</span>
-          <img class="tool-icon" src="/assets/icons/liftia.png" width="56" height="56" alt="">
-          <span class="tool-body"><span class="tool-name">Liftia</span><span class="tool-line">ジムでの記録を、その場でかんたんに。</span></span>
-          <span class="tool-status">開発中</span>
-          <span class="tool-arrow" aria-hidden="true"></span>
+  </div>
+  <div class="app-rail">
+    <article class="app-card is-carddock">
+      <div class="app-art" aria-hidden="true"><div class="art-in">
+        <img class="art-shot" src="/assets/carddock-widget.webp" width="720" height="756" alt="" loading="lazy" decoding="async">
+      </div></div>
+      <div class="app-meta">
+        <h3 class="app-id"><img src="/assets/icons/carddock.png" width="40" height="40" alt="" class="app-mark" loading="lazy"><a href="/carddock/">CardDock</a></h3>
+        <p>好きなアプリを、好きなレイアウトで。</p>
+        <span class="app-status st-live">配信中</span>
+      </div>
+      <span class="app-peek" aria-hidden="true">View app ↗</span>
+    </article>
+    <article class="app-card is-liftia">
+      <div class="app-art" aria-hidden="true"><div class="art-in">
+        <div class="mock mock-log">
+          <span class="lg-head"><b>胸・三頭</b><em>今日</em></span>
+          <span class="lg-row"><i>ベンチプレス</i><b>60<small>kg</small> × 10</b></span>
+          <span class="lg-row"><i>　</i><b>60<small>kg</small> × 8</b></span>
+          <span class="lg-row is-now"><i>　</i><b>55<small>kg</small> × 8</b></span>
+          <span class="lg-foot"><em>総挙上</em><b>2,340<small>kg</small></b></span>
         </div>
-      </li>
-      <li>
-        <div class="tool">
-          <span class="tool-no">03</span>
-          <img class="tool-icon" src="/assets/icons/timesnap.png" width="56" height="56" alt="">
-          <span class="tool-body"><span class="tool-name">TimeSnap</span><span class="tool-line">乗り換え時間から、アラームを自動で。</span></span>
-          <span class="tool-status">開発中</span>
-          <span class="tool-arrow" aria-hidden="true"></span>
+      </div></div>
+      <div class="app-meta">
+        <h3 class="app-id"><img src="/assets/icons/liftia.png" width="40" height="40" alt="" class="app-mark" loading="lazy">Liftia</h3>
+        <p>ジムでの記録を、その場でかんたんに。</p>
+        <span class="app-status">開発中</span>
+      </div>
+    </article>
+    <article class="app-card is-timesnap">
+      <div class="app-art" aria-hidden="true"><div class="art-in">
+        <div class="mock mock-transit">
+          <span class="sn-top"><i></i>TimeSnap</span>
+          <span class="sn-route">新宿<em>→</em>渋谷</span>
+          <span class="sn-eta">あと<strong>8</strong>分</span>
+          <span class="sn-bar"><i></i></span>
+          <span class="sn-foot"><em>7:42 発</em><em>7:50 着</em></span>
+          <span class="sn-alarm">7:38 にアラーム</span>
         </div>
-      </li>
-      <li>
-        <div class="tool is-next">
-          <span class="tool-no">04</span>
-          <span class="tool-icon tool-icon-next" aria-hidden="true"></span>
-          <span class="tool-body"><span class="tool-name">Next</span><span class="tool-line">次の思いつきを、こねています。</span></span>
-          <span class="tool-status is-idea">構想中</span>
-          <span class="tool-arrow" aria-hidden="true"></span>
-        </div>
-      </li>
-    </ol>
+      </div></div>
+      <div class="app-meta">
+        <h3 class="app-id"><img src="/assets/icons/timesnap.png" width="40" height="40" alt="" class="app-mark" loading="lazy">TimeSnap</h3>
+        <p>乗り換え時間から、アラームを自動で。</p>
+        <span class="app-status">開発中</span>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -162,7 +169,6 @@
       <li><b>03</b><h3>磨く</h3><p>指ざわり、読みやすさ、速さ。手になじむまで整えます。</p></li>
       <li><b>04</b><h3>届ける</h3><p>App Store に出したあとも、使う人の声でまた育てます。</p></li>
     </ol>
-    <p class="built">Made with <span>Swift</span><span>SwiftUI</span><span>WidgetKit</span></p>
   </div>
 </section>
 
