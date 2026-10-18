@@ -48,13 +48,9 @@ function scrollStage() {
 function updateText(s) {
   stage.style.setProperty('--intro', (1 - range(s, 0.05, 0.3)).toFixed(3));
   const lastCap = capEls.length - 1;
-  capEls.forEach((el, i) => {
-    let on;
-    if (i === 0) on = s < 0.2;
-    else if (i === lastCap) on = s > 4.6;
-    else on = s > i - 1 + 0.24 && s < i - 1 + 0.92;
-    el.classList.toggle('is-on', on);
-  });
+  // 字幕はいつもどれか 1 つを出しておく（段が変わるところで入れ替える）
+  const active = s < 0.22 ? 0 : s >= 4.5 ? lastCap : 1 + Math.min(lastCap - 2, Math.floor(s));
+  capEls.forEach((el, i) => el.classList.toggle('is-on', i === active));
   stepEls.forEach((el, i) => {
     const f = clamp01(s - i);
     el.classList.toggle('is-on', (s >= i && s < i + 1) || (i === 4 && s >= 4));
@@ -401,10 +397,14 @@ function start() {
     camPos.set(lerp(a.pos[0], b.pos[0], f), lerp(a.pos[1], b.pos[1], f), lerp(a.pos[2], b.pos[2], f)).multiplyScalar(dist);
     const d = camPos.length();
     const visH = 2 * tanHalf * d, visW = visH * aspect;
-    target.set(wide ? -Math.min(0.22, 0.1 + (aspect - 1) * 0.15) * visW : 0, wide ? 0 : lerp(-0.08, -0.09, smooth(range(t5, 0.3, 1))) * visH, 0);
+    // 広い画面では 1200px の枠の右寄り（枠の 68% のところ）にドーナツを置く
+    const gutter = Math.min(40, Math.max(16, width * 0.04));
+    const edge = Math.max(gutter, (width - 1200) / 2 + gutter);
+    const fx = (edge + (width - 2 * edge) * 0.68) / width;
+    target.set(wide ? -(fx - 0.5) * visW : 0, wide ? 0 : lerp(-0.08, -0.09, smooth(range(t5, 0.3, 1))) * visH, 0);
     camera.position.copy(camPos).add(target);
     camera.lookAt(target);
-    stage.style.setProperty('--gx', wide ? `${50 + Math.min(22, 10 + (aspect - 1) * 15)}%` : '50%');
+    stage.style.setProperty('--gx', wide ? `${(fx * 100).toFixed(1)}%` : '50%');
     stage.style.setProperty('--gy', wide ? '52%' : '36%');
 
     // 05 iPhone がせり上がってくる

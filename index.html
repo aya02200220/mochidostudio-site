@@ -76,7 +76,7 @@
         <h1><span class="nb">毎日をちょっと</span><span class="nb">楽しくする、</span><span class="nb">iPhone の道具を。</span></h1>
         <p><strong>Mochido Studio</strong> は、iPhone アプリをつくるスタジオです。スクロールして、工房をのぞいてみてください。</p>
       </div>
-      <p class="cap">ぜんぶ、<br>小さな思いつきから。</p>
+      <p class="cap"><span class="nb">ぜんぶ、</span><br><span class="nb">小さな思いつきから。</span></p>
       <p class="cap">かたちにして、</p>
       <p class="cap">色をのせて、</p>
       <p class="cap">さわって、<br>磨いて、</p>
@@ -174,14 +174,34 @@
 
 <section class="hello" id="hello" aria-labelledby="hello-title">
   <div class="wrap hello-grid">
-    <h2 class="display" id="hello-title">Say hello.</h2>
     <div class="hello-copy">
+      <h2 class="display" id="hello-title">Say hello.</h2>
       <p>ご感想、ご要望、お仕事のご相談など。<br>ぜんぶ読んでいます。</p>
       <div class="mail">
         <a href="mailto:support@mochidostudio.com">support@mochidostudio.com</a>
         <button type="button" class="copy" data-copy="support@mochidostudio.com">Copy</button>
       </div>
     </div>
+
+    <form class="contact" id="contact-form" novalidate>
+      <fieldset class="topics">
+        <legend>どんなご用件ですか？</legend>
+        <label><input type="radio" name="topic" value="ご感想" checked><span>ご感想</span></label>
+        <label><input type="radio" name="topic" value="ご要望・不具合"><span>ご要望・不具合</span></label>
+        <label><input type="radio" name="topic" value="お仕事のご相談"><span>お仕事のご相談</span></label>
+        <label><input type="radio" name="topic" value="そのほか"><span>そのほか</span></label>
+      </fieldset>
+      <div class="field-row">
+        <label class="field"><span>お名前</span><input id="cf-name" name="name" type="text" autocomplete="name" required></label>
+        <label class="field"><span>メールアドレス</span><input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required></label>
+      </div>
+      <label class="field"><span>メッセージ</span><textarea id="cf-message" name="message" rows="5" required></textarea></label>
+      <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="contact-foot">
+        <button class="btn btn-primary" type="submit">送信する</button>
+        <p class="contact-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -209,6 +229,46 @@ document.querySelectorAll('[data-copy]').forEach(function (b) {
   var h = document.querySelector('.site-header');
   var on = function () { h.classList.toggle('is-scrolled', window.scrollY > 24); };
   window.addEventListener('scroll', on, { passive: true }); on();
+})();
+(function () {
+  /* お問い合わせ: Web3Forms に送る。アクセスキーが無いあいだは、メールアプリを開いて同じ内容を書き込む */
+  var ACCESS_KEY = '';
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var status = form.querySelector('.contact-status');
+  var button = form.querySelector('button[type="submit"]');
+  var say = function (text, kind) { status.textContent = text; status.dataset.kind = kind || ''; };
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var name = (d.get('name') || '').trim(), email = (d.get('email') || '').trim(), message = (d.get('message') || '').trim();
+    var topic = d.get('topic') || 'そのほか';
+    if (!name || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      say('お名前・メールアドレス・メッセージを入れてください。', 'error');
+      return;
+    }
+    if (d.get('botcheck')) return;
+    var subject = '【' + topic + '】' + name + ' さんからのお問い合わせ';
+    if (!ACCESS_KEY) {
+      location.href = 'mailto:support@mochidostudio.com?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(message + '\n\n' + name + '\n' + email);
+      say('メールアプリで送信してください。', '');
+      return;
+    }
+    button.disabled = true;
+    say('送信しています…', '');
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: ACCESS_KEY, subject: subject, from_name: 'Mochido Studio サイト', name: name, email: email, topic: topic, message: message, botcheck: '' })
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (!res.success) throw new Error(res.message);
+      form.reset();
+      say('送信しました。ありがとうございます！', 'ok');
+    }).catch(function () {
+      say('送信できませんでした。少し時間をおくか、上のメールアドレスに直接お送りください。', 'error');
+    }).then(function () { button.disabled = false; });
+  });
 })();
 </script>
 </body>
