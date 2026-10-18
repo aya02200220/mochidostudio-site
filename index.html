@@ -34,7 +34,7 @@
 <header class="site-header" id="top">
   <a class="brand" href="/"><i aria-hidden="true"></i>Mochido Studio</a>
   <nav aria-label="メインナビゲーション">
-    <a href="#bench">Tools</a>
+    <a href="#apps">Apps</a>
     <a href="#studio">Studio</a>
     <a href="#hello">Contact</a>
   </nav>
@@ -83,7 +83,7 @@
       <div class="cap cap-last">
         <p>iPhone の、<br>毎日の道具に。</p>
         <div class="cap-actions">
-          <a class="btn btn-primary" href="#bench">つくっているもの</a>
+          <a class="btn btn-primary" href="#apps">つくっているもの</a>
           <a class="btn btn-ghost" href="#studio">スタジオについて</a>
         </div>
       </div>
@@ -102,47 +102,55 @@
   </div>
 </section>
 
-<section class="bench" id="bench" aria-labelledby="bench-title">
+<section class="bench" id="apps" aria-labelledby="bench-title">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Our apps</p>
-      <h2 id="bench-title">できたての、アプリたち。</h2>
+    <div class="apps-head">
+      <div>
+        <p class="kicker">Our apps</p>
+        <h2 class="display display-sm" id="bench-title">Fresh from<br>the <em>studio.</em></h2>
+      </div>
+      <p class="apps-lede">できたての、アプリたち。<br>毎日のちょっとした場面で、手に取ってもらえたらうれしいです。</p>
     </div>
   </div>
   <div class="app-rail">
-    <article class="app-card is-carddock">
+    <article class="app-card reveal is-carddock" style="--i:0">
+      <span class="app-shine" aria-hidden="true"></span>
       <div class="app-art" aria-hidden="true"><div class="art-in">
         <img class="art-shot" src="/assets/carddock-widget.webp" width="720" height="756" alt="" loading="lazy" decoding="async">
       </div></div>
       <div class="app-meta">
         <h3 class="app-id"><img src="/assets/icons/carddock.png" width="40" height="40" alt="" class="app-mark" loading="lazy"><a href="/carddock/">CardDock</a></h3>
         <p>好きなアプリを、好きなレイアウトで。</p>
-        <span class="app-status st-live">配信中</span>
+        <ul class="app-tags"><li>ウィジェット</li><li>テーマ</li><li>LINE 通話</li></ul>
+        <div class="app-foot"><span class="app-status st-live">配信中</span><a class="app-store" href="https://apps.apple.com/app/id6811987779" target="_blank" rel="noopener">App Store ↗</a></div>
       </div>
-      <span class="app-peek" aria-hidden="true">View app ↗</span>
+      <span class="app-peek" aria-hidden="true">詳しく見る →</span>
     </article>
-    <article class="app-card is-liftia">
+    <article class="app-card reveal is-liftia" style="--i:1">
+      <span class="app-shine" aria-hidden="true"></span>
       <div class="app-art" aria-hidden="true"><div class="art-in">
         <div class="mock mock-log">
           <span class="lg-head"><b>胸・三頭</b><em>今日</em></span>
           <span class="lg-row"><i>ベンチプレス</i><b>60<small>kg</small> × 10</b></span>
           <span class="lg-row"><i>　</i><b>60<small>kg</small> × 8</b></span>
           <span class="lg-row is-now"><i>　</i><b>55<small>kg</small> × 8</b></span>
-          <span class="lg-foot"><em>総挙上</em><b>2,340<small>kg</small></b></span>
+          <span class="lg-foot"><em>総挙上</em><b><span data-count="2340">2,340</span><small>kg</small></b></span>
         </div>
       </div></div>
       <div class="app-meta">
         <h3 class="app-id"><img src="/assets/icons/liftia.png" width="40" height="40" alt="" class="app-mark" loading="lazy">Liftia</h3>
         <p>ジムでの記録を、その場でかんたんに。</p>
-        <span class="app-status">開発中</span>
+        <ul class="app-tags"><li>筋トレ</li><li>記録</li><li>グラフ</li></ul>
+        <div class="app-foot"><span class="app-status">開発中</span></div>
       </div>
     </article>
-    <article class="app-card is-timesnap">
+    <article class="app-card reveal is-timesnap" style="--i:2">
+      <span class="app-shine" aria-hidden="true"></span>
       <div class="app-art" aria-hidden="true"><div class="art-in">
         <div class="mock mock-transit">
           <span class="sn-top"><i></i>TimeSnap</span>
           <span class="sn-route">新宿<em>→</em>渋谷</span>
-          <span class="sn-eta">あと<strong>8</strong>分</span>
+          <span class="sn-eta">あと<strong data-countdown>8</strong>分</span>
           <span class="sn-bar"><i></i></span>
           <span class="sn-foot"><em>7:42 発</em><em>7:50 着</em></span>
           <span class="sn-alarm">7:38 にアラーム</span>
@@ -151,7 +159,8 @@
       <div class="app-meta">
         <h3 class="app-id"><img src="/assets/icons/timesnap.png" width="40" height="40" alt="" class="app-mark" loading="lazy">TimeSnap</h3>
         <p>乗り換え時間から、アラームを自動で。</p>
-        <span class="app-status">開発中</span>
+        <ul class="app-tags"><li>乗り換え</li><li>アラーム</li><li>通勤</li></ul>
+        <div class="app-foot"><span class="app-status">開発中</span></div>
       </div>
     </article>
   </div>
@@ -269,6 +278,49 @@ document.querySelectorAll('[data-copy]').forEach(function (b) {
       say('送信できませんでした。少し時間をおくか、上のメールアドレスに直接お送りください。', 'error');
     }).then(function () { button.disabled = false; });
   });
+})();
+(function () {
+  /* アプリのカード: 画面に入ったら順に浮かび上がる・マウスで少し傾いて光が動く */
+  var cards = [].slice.call(document.querySelectorAll('.app-card'));
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!cards.length) return;
+  if (calm || !('IntersectionObserver' in window)) { cards.forEach(function (c) { c.classList.add('is-in'); }); }
+  else {
+    document.documentElement.classList.add('reveal-ready');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+        var n = e.target.querySelector('[data-count]');
+        if (n) countUp(n, +n.dataset.count);
+      });
+    }, { threshold: 0.2 });
+    cards.forEach(function (c) { io.observe(c); });
+  }
+  function countUp(el, to) {
+    var t0 = performance.now();
+    (function step(now) {
+      var k = Math.min(1, (now - t0) / 1400), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(to * e).toLocaleString('en-US');
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  if (!calm && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    cards.forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        c.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        c.style.setProperty('--ry', ((x - .5) * 7).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', ((.5 - y) * 6).toFixed(2) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { ['--rx', '--ry'].forEach(function (k) { c.style.removeProperty(k); }); });
+    });
+  }
+  /* TimeSnap の「あと ◯ 分」がゆっくり減って、また戻る */
+  var cd = document.querySelector('[data-countdown]');
+  if (cd && !calm) { var m = 8; setInterval(function () { m = m <= 3 ? 8 : m - 1; cd.textContent = m; }, 2600); }
 })();
 </script>
 </body>
