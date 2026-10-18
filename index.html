@@ -231,8 +231,8 @@ document.querySelectorAll('[data-copy]').forEach(function (b) {
   window.addEventListener('scroll', on, { passive: true }); on();
 })();
 (function () {
-  /* お問い合わせ: Web3Forms に送る。アクセスキーが無いあいだは、メールアプリを開いて同じ内容を書き込む */
-  var ACCESS_KEY = '';
+  /* お問い合わせ: Web3Forms に送る（キーは公開してよいもの）。キーを外すと、メールアプリを開いて同じ内容を書き込む */
+  var ACCESS_KEY = '9693dacd-8fd6-46f7-bf6a-e9b163b0a30d';
   var form = document.getElementById('contact-form');
   if (!form) return;
   var status = form.querySelector('.contact-status');
